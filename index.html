@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.min.css" />
+  <title>CountDown</title>
+</head>
+
+<body>
+  <div class="video-container">
+    <video autoplay muted loop>
+      <source src="video/Sablier.mp4" />
+    </video>
+  </div>
+  <div class="video-overlay"></div>
+
+  <div class="container">
+    <h2 class="countdown-title">Set CountDown</h2>
+    <!-- countdown form -->
+    <form class="form" id="form">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" placeholder="Enter a title for your countdown" />
+      <label for="date">Date</label>
+      <input type="date" name="date" id="date" />
+      <button type="submit">Submit</button>
+    </form>
+    <div class="countdown" hidden>
+      <div class="countdown-progress">
+        <div class="days"><span>0</span>Days</div>
+        <div class="hours"><span>0</span>Hours</div>
+        <div class="minutes"><span>0</span>Minutes</div>
+        <div class="seconds"><span>0</span>Seconds</div>
+      </div>
+      <button id="reset">Reset</button>
+    </div>
+
+    <div class="countdown-finished" hidden>
+      <h3>CountDown Finished</h3>
+      <button id="reset">New CountDown</button>
+    </div>
+  </div>
+  <!-- js -->
+  <script src="js/jquery-3.6.3.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
