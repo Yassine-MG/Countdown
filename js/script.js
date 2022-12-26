@@ -8,6 +8,7 @@ $("document").ready(function () {
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
+  let intervalId = null ;
   let couldown;
 
   if(localStorage.getItem("items")==null){
@@ -20,7 +21,8 @@ $("document").ready(function () {
   }
 
   function countDown(title,date){
-    setInterval(()=>{
+
+  intervalId = setInterval(()=>{
       let countdownDate = new Date(date).getTime();
       let now = new Date().getTime();
       let distance = countdownDate - now;
@@ -36,7 +38,17 @@ $("document").ready(function () {
     }, 1000);
   }
 
+
+    function removeAllTask() {
+      localStorage.removeItem("Tasks");
+      task = [];
+      document.querySelector(".countdown-title").innerHTML = "";
+    }
+
+
+
   $("form").submit((e) => {
+    task = [];
     e.preventDefault();
     let title = $("#title").val();
     let date = $("#date").val();
@@ -49,25 +61,29 @@ $("document").ready(function () {
         timing : date
       }
       couldown.push(task)
-      localStorage.setItem("Tasks",JSON.stringify(couldown));
+      localStorage.setItem("Tasks",JSON.stringify(task));
       console.log(task);
       $("form")[0].reset();
+      console.log($("form"));
       $("form").fadeOut(() => {
         countdown.fadeIn(1000);
         countDown(task.title, task.timing);
       });
       // reset the form
-      $("#form")[0].reset();
     }
   });
-  $("#reset").click(()=>{
-    localStorage.clear();
-    countdown.fadeOut(()=>{
+  $("#reset").click(function () {
+    localStorage.removeItem("task");
+    countdown.fadeOut(() => {
       $("form").fadeIn(1000);
-      location.reload();
     });
-  })
+    clearInterval(intervalId);
+  });
 });
+
+
+
+
 
 
 
